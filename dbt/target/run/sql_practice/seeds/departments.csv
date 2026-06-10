@@ -1,0 +1,13 @@
+
+    
+    
+    
+    create table "practice"."main"."departments" (department_id integer,department_name text,location text)
+  ;
+    -- dbt seed --
+    
+          COPY "practice"."main"."departments" FROM '/usr/app/dbt/seeds/departments.csv' (FORMAT CSV, HEADER TRUE, DELIMITER ',')
+        
+
+;
+  

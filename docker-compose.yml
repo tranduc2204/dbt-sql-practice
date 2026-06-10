@@ -1,0 +1,19 @@
+services:
+  dbt:
+    build: .
+    container_name: dbt_sql_practice
+    volumes:
+      - ./dbt:/usr/app/dbt          # dbt project (live edit from host)
+      - ./warehouse:/usr/app/warehouse  # duckdb file persists on host
+    working_dir: /usr/app/dbt
+    environment:
+      DBT_PROFILES_DIR: /usr/app/dbt
+    # Override CMD to run a full build on `docker compose up`,
+    # then stay alive for interactive querying.
+    command: >
+      sh -c "dbt deps &&
+             dbt seed --full-refresh &&
+             dbt run &&
+             dbt test;
+             echo '=== dbt build done. Container staying alive for queries. ===';
+             tail -f /dev/null"

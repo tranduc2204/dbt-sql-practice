@@ -1,0 +1,13 @@
+
+    
+    
+    
+    create table "practice"."main"."employees" (employee_id integer,name text,department_id integer,manager_id integer,salary integer,hire_date date)
+  ;
+    -- dbt seed --
+    
+          COPY "practice"."main"."employees" FROM '/usr/app/dbt/seeds/employees.csv' (FORMAT CSV, HEADER TRUE, DELIMITER ',')
+        
+
+;
+  

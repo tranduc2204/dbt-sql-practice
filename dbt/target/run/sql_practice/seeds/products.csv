@@ -1,0 +1,13 @@
+
+    
+    
+    
+    create table "practice"."main"."products" (product_id integer,product_name text,category text,price integer)
+  ;
+    -- dbt seed --
+    
+          COPY "practice"."main"."products" FROM '/usr/app/dbt/seeds/products.csv' (FORMAT CSV, HEADER TRUE, DELIMITER ',')
+        
+
+;
+  

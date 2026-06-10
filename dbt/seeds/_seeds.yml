@@ -1,0 +1,70 @@
+version: 2
+
+seeds:
+  - name: customers
+    description: "Danh sách khách hàng / Customer master data."
+    columns:
+      - name: customer_id
+        description: "Khóa chính / Primary key."
+        data_tests: [unique, not_null]
+
+  - name: products
+    description: "Danh mục sản phẩm / Product catalog."
+    columns:
+      - name: product_id
+        data_tests: [unique, not_null]
+      - name: category
+        data_tests:
+          - accepted_values:
+              values: ['Electronics', 'Furniture', 'Appliances', 'Stationery']
+
+  - name: orders
+    description: "Đơn hàng / Orders header."
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('customers')
+              field: customer_id
+      - name: status
+        data_tests:
+          - accepted_values:
+              values: ['completed', 'pending', 'cancelled', 'shipped']
+
+  - name: order_items
+    description: "Chi tiết dòng đơn hàng / Order line items."
+    columns:
+      - name: order_item_id
+        data_tests: [unique, not_null]
+      - name: order_id
+        data_tests:
+          - relationships:
+              to: ref('orders')
+              field: order_id
+      - name: product_id
+        data_tests:
+          - relationships:
+              to: ref('products')
+              field: product_id
+
+  - name: departments
+    description: "Phòng ban / Departments."
+    columns:
+      - name: department_id
+        data_tests: [unique, not_null]
+
+  - name: employees
+    description: "Nhân viên (có quan hệ quản lý phân cấp) / Employees with self-referencing manager."
+    columns:
+      - name: employee_id
+        data_tests: [unique, not_null]
+      - name: department_id
+        data_tests:
+          - relationships:
+              to: ref('departments')
+              field: department_id
+      - name: manager_id
+        description: "Tự tham chiếu tới employee_id (NULL = top manager)."

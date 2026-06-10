@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Khách hàng đã chuẩn hóa / Cleaned customers."
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: customer_name
+        data_tests: [not_null]
+
+  - name: stg_orders
+    description: "Đơn hàng đã chuẩn hóa / Cleaned orders."
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: status
+        data_tests:
+          - accepted_values:
+              values: ['completed', 'pending', 'cancelled', 'shipped']
+
+  - name: stg_order_items
+    description: "Dòng đơn hàng đã chuẩn hóa / Cleaned order items."
+    columns:
+      - name: order_item_id
+        data_tests: [unique, not_null]
+      - name: quantity
+        data_tests:
+          - dbt_utils.accepted_range:
+              min_value: 1
+              inclusive: true
+        # NOTE: dbt_utils test cần package; xem packages.yml. Có thể bỏ nếu không cài.
+
+  - name: stg_products
+    description: "Sản phẩm đã chuẩn hóa / Cleaned products."
+    columns:
+      - name: product_id
+        data_tests: [unique, not_null]
+      - name: price
+        data_tests: [not_null]
+
+  - name: stg_employees
+    description: "Nhân viên đã chuẩn hóa / Cleaned employees."
+    columns:
+      - name: employee_id
+        data_tests: [unique, not_null]
+
+  - name: stg_departments
+    description: "Phòng ban đã chuẩn hóa / Cleaned departments."
+    columns:
+      - name: department_id
+        data_tests: [unique, not_null]

@@ -1,0 +1,13 @@
+
+    
+    
+    
+    create table "practice"."main"."orders" (order_id integer,customer_id integer,order_date date,status text)
+  ;
+    -- dbt seed --
+    
+          COPY "practice"."main"."orders" FROM '/usr/app/dbt/seeds/orders.csv' (FORMAT CSV, HEADER TRUE, DELIMITER ',')
+        
+
+;
+  

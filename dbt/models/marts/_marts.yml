@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: fct_order_items
+    description: >
+      Bảng fact một dòng cho mỗi line-item, đã join sẵn order, product, customer
+      và tính sẵn line_revenue. Dùng làm bảng chính để luyện các câu hỏi nâng cao.
+    columns:
+      - name: order_item_id
+        data_tests: [unique, not_null]
+      - name: line_revenue
+        description: "price * quantity"
+        data_tests: [not_null]
+      - name: customer_id
+        data_tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id

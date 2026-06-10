@@ -1,0 +1,13 @@
+customer_id,name,country,city,signup_date
+1,John Smith,USA,New York,2022-01-15
+2,Maria Garcia,Spain,Madrid,2022-02-20
+3,Liu Wei,China,Shanghai,2022-03-10
+4,Anna Muller,Germany,Berlin,2021-12-05
+5,Carlos Silva,Brazil,Sao Paulo,2022-05-18
+6,Yuki Tanaka,Japan,Tokyo,2022-06-22
+7,Olivia Brown,UK,London,2021-11-30
+8,Raj Patel,India,Mumbai,2022-07-14
+9,Sophie Martin,France,Paris,2022-04-09
+10,Emma Wilson,USA,Los Angeles,2022-08-25
+11,Noah Lee,USA,Chicago,2023-01-05
+12,Zoe Clark,Canada,Toronto,2023-02-11

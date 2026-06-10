@@ -1,0 +1,13 @@
+
+    
+    
+    
+    create table "practice"."main"."customers" (customer_id integer,name text,country text,city text,signup_date date)
+  ;
+    -- dbt seed --
+    
+          COPY "practice"."main"."customers" FROM '/usr/app/dbt/seeds/customers.csv' (FORMAT CSV, HEADER TRUE, DELIMITER ',')
+        
+
+;
+  

@@ -1,0 +1,11 @@
+sql_practice:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: /usr/app/warehouse/practice.duckdb
+      schema: main
+      threads: 4
+      # extensions:
+      #   - httpfs
+      #   - parquet
