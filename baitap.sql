@@ -264,7 +264,10 @@ having count(*)>2
 
 --### 30. Nhân viên kèm tên phòng ban. / Employees with their department name.
 
-
+select emp.name, dept.department_name
+from employees emp
+left join departments dept
+	on emp.department_id = dept.department_id
 
 
 
